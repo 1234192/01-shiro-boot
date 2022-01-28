@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--基于属性的 -->
+<h1 shiro:guest="true">
+    没有登录
+</h1>
+<!--基于标签的 -->
+<shiro:guest>
+    <h1>没有登录</h1>
+</shiro:guest>
+
+<a href="/logout">登出</a><br><br><br>
+
+<a th:href="@{|/admin/test|}">需要有admin角色的功能</a><br>
+<a th:href="@{|/admin/test01|}">需要有admin角色的功能test01</a><br>
+<a th:href="@{|/admin/add|}">需要有admin角色的功能add</a><br>
+<a th:href="@{|/user/test|}">需要有user角色的功能</a><br>
+
+<shiro:guest>
+    　用户没有身份验证时显示相应信息，即游客访问信息。
+</shiro:guest>
+
+<shiro:hasRole name="admin">
+    如果当前Subject有角色将显示body体内容。
+</shiro:hasRole>
+
+<shiro:user>
+    用户已经身份验证/记住我登录后显示相应的信息
+</shiro:user>
+
+<shiro:authenticated>
+    用户已经身份验证通过，即Subject.login登录成功，不是记住我登录的
+</shiro:authenticated>
+
+<shiro:hasPermission name="admin:add">
+    如果当前Subject有权限将显示body体内容
+</shiro:hasPermission>
+</body>
+</html>
